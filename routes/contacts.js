@@ -6,6 +6,10 @@ const {check, validationResult} = require('express-validator');
 const User = require('../models/User');
 const Contact = require('../models/Contact');
 
+const cors = require('cors'); 
+
+router.use(cors()); 
+
 router.get('/', auth, async (req, res) => {
   try {
     const contacts = await Contact.find({user: req.user.id}).sort({

@@ -11,6 +11,10 @@ const config = require('config');
 const User = require('../models/User');
 const connectDB = require('../config/db');
 
+const cors = require('cors'); 
+
+router.use(cors()); 
+
 router.get('/', async (req, res) => {
     res.send('User route!'); 
 })
