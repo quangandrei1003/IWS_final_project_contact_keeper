@@ -1,5 +1,4 @@
 import React, { useReducer } from 'react';
-import {v4 as uuid} from 'uuid' 
 import axios from 'axios'; 
 import ContactContext from './contactContext';
 import contactReducer from './contactReducer';
@@ -30,7 +29,7 @@ const [state, dispatch] = useReducer(contactReducer, initialState);
   // Get Contacts
   const getContacts = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/contacts');
+      const res = await axios.get('/api/contacts');
 
       dispatch({
         type: GET_CONTACTS,
@@ -53,7 +52,7 @@ const [state, dispatch] = useReducer(contactReducer, initialState);
     };
 
     try {
-      const res = await axios.post('http://localhost:5000/api/contacts', contact, config);
+      const res = await axios.post('/api/contacts', contact, config);
 
       dispatch({
         type: ADD_CONTACT,
@@ -70,7 +69,7 @@ const [state, dispatch] = useReducer(contactReducer, initialState);
 // Delete Contact
 const deleteContact = async id => {
   try {
-    await axios.delete(`http://localhost:5000/api/contacts/${id}`);
+    await axios.delete(`/api/contacts/${id}`);
 
     dispatch({
       type: DELETE_CONTACT,
@@ -94,7 +93,7 @@ const updateContact = async contact => {
 
   try {
     const res = await axios.put(
-      `http://localhost:5000/api/contacts/${contact._id}`,
+      `/api/contacts/${contact._id}`,
       contact,
       config
     );
